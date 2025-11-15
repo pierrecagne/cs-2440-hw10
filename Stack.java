@@ -62,5 +62,4 @@ public class Stack<T> {
         head = head.getNext();
         return res;
     }
-    
 }
