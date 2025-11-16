@@ -1,32 +1,55 @@
 public class Tree<T> {
-    // TODO: Implement the unique field
+    private TreeNode<T> root;
 
     public Tree() {
-        // TODO: Initialize the tree
+        this.root = null;
     }
 
     public Tree(TreeNode<T> root) {
-        // TODO: Initialize the tree with a root
+        this.root = root;
     }
 
     public void setRoot(TreeNode<T> root) {
-        // TODO: Set the root node
+        this.root = root;
     }
 
     public TreeNode<T> getRoot() {
-        // TODO: Return the root node
-        return null; // For compiling purposes only. TODO: Replace by adequate return
+        return root;
     }
 
     public List<T> breadthFirstSearch() {
-        // TODO: Implement BFS
-        // Don't forget to transform your collection R into a list at the end (if it is not already)
-        return null; // For compiling purposes only. TODO: Replace by adequate return
+        List<T> result = new List<T>();
+        if (root == null) {
+            return result;
+        }
+        Queue<TreeNode<T>> queue = new Queue<TreeNode<T>>();
+        queue.enqueue(root);
+        while (!queue.isEmpty()) {
+            TreeNode<T> current = queue.dequeue();
+            result.addAtEnd(current.getValue());
+            List<TreeNode<T>> children = current.getChildren();
+            for (TreeNode<T> child : children) {
+                queue.enqueue(child);
+            }
+        }
+        return result;
     }
 
     public List<T> depthFirstSearch() {
-        // TODO: Implement DFS
-        // Don't forget to transform your collection R into a list at the end (if it is not already)
-        return null; // For compiling purposes only. TODO: Replace by adequate return
+        List<T> result = new List<T>();
+        if (root == null) {
+            return result;
+        }
+        Stack<TreeNode<T>> stack = new Stack<TreeNode<T>>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode<T> current = stack.pop();
+            result.addAtEnd(current.getValue());
+            List<TreeNode<T>> children = current.getChildren();
+            for (TreeNode<T> child : children) {
+                stack.push(child);
+            }
+        }
+        return result;
     }
 }
